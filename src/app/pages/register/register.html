@@ -1,0 +1,15 @@
+<app-base-login [title]="'Registar-se'">
+    <form action="#">
+    <app-input [type]="'email'" [placeholder]="'Email'"></app-input>
+    <app-input [type]="'text'" [placeholder]="'Nome do utilizador'"></app-input>
+    <app-input [type]="'password'" [placeholder]="'Password'"></app-input>
+    <app-input [type]="'password'" [placeholder]="'Confirmar Password'"></app-input>
+    <app-button [text]="'Registar-se'"  [classname]="'primary'"></app-button>
+    </form>
+    <div class="separator">
+        <div class="separator-row"></div>
+        <p>OU</p>
+        <div class="separator-row"></div>
+    </div>
+    <app-button [routerLink]="'/login'" [text]="'Fazer login'" [classname]="'secondary'"></app-button>
+</app-base-login>
