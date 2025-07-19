@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { BaseLogin } from "../../components/base-login/base-login";
-import { Button } from "../../components/button/button";
 import { Input } from "../../components/input/input";
+import { Button } from "../../components/button/button";
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  imports: [BaseLogin, Button, Input, RouterLink],
-  templateUrl: './login.html',
-  styleUrl: './login.scss'
+  selector: 'app-register',
+  imports: [BaseLogin, Input, Button, RouterLink],
+  templateUrl: './register.html',
+  styleUrl: './register.scss'
 })
-export class Login {
+export class Register {
 
 }
