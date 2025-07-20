@@ -1,0 +1,25 @@
+.card-conteiner{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 8px;
+    app-card{
+        h4,p{
+            font-weight: 400;
+        }
+        p{
+            font-size: 32px;
+        }
+        h4{
+            font-size: 18px;
+        }
+    }
+    .cards-top{
+        display: inherit;
+        flex-wrap: wrap;
+        gap: inherit;
+        app-card{
+            flex-grow: 1;
+        }
+    }
+}

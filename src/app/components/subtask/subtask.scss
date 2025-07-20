@@ -1,0 +1,9 @@
+@import '../../../variables.scss';
+.subtask-wrapper{
+    background-color: $light-gray-bg;
+    border-radius: 10px;
+    p{
+        color: $gray-text;
+        padding: 15px 35px;
+    }
+}

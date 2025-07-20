@@ -1,0 +1,12 @@
+@import "../../../variables.scss";
+.card{
+    transition: all 0.3s ease-in;
+    background-color: white;
+    color: $gray-text;
+    padding: 25px 41px;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover{
+        box-shadow: 0px 0px 6px rgb(185, 185, 185);
+    }
+}
