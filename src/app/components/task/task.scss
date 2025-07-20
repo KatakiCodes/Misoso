@@ -1,0 +1,21 @@
+@import '../../../variables.scss';
+p.primary{
+    color: $primary;
+    font-weight: 500;
+}
+.flex-task{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    align-items: start;
+    justify-content: space-between;
+    .task{
+        h3{
+            font-weight: 400;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+    }
+}
+hr{
+    margin: 16px 0;
+}
