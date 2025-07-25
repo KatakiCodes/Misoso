@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Card } from "../card/card";
 import { Subtask } from "../subtask/subtask";
 
@@ -9,5 +9,5 @@ import { Subtask } from "../subtask/subtask";
   styleUrl: './task.scss'
 })
 export class Task {
-
+  @Input() IsFocused:boolean;
 }

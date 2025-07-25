@@ -7,6 +7,8 @@
         </div>
         <small><p class="primary">Concluir em: 2 dias</p></small>
     </div>
-    <hr>
-    <app-subtask></app-subtask>
+    @if(IsFocused){
+        <hr>
+        <app-subtask></app-subtask>
+    }
 </app-card>
