@@ -2,15 +2,15 @@
     <header>
         <div class="header-top">
             <div class="left-content">
-                <h3>Segunda-feira</h3>
-                <small><p>27-07-2025</p></small>
+                <h3>{{ getWeekDay() }}</h3>
+                <small><p>{{ date.getDate()}} {{ getMonth() }} {{ date.getFullYear() }}</p></small>
             </div>
 
             <div class="right-content">
                 <div class="avatar-wrapper">
                     <div class="avatar-content">
-                        <p>Nelson Dos Santos</p>
-                        <small><p>nelsonemail.com</p></small>
+                        <p>{{ user.name }}</p>
+                        <small><p>{{ user.email }}</p></small>
                     </div>
                     <div class="avatar-icon">
                         <img src="./assets/avatar-icon.svg" alt="avatar icon">
@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <h1>Dashboard</h1>
+        <h1>{{ sectionPage }}</h1>
     </header>
     <ng-content></ng-content>
 </div>
