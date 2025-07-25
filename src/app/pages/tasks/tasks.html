@@ -1,0 +1,19 @@
+<app-dashboard-base-layout [sectionPage]="'Tarefas'">
+    <section class="filter-section">
+        <app-input [type]="'text'" [classname]="'white'" [placeholder]="'Buscar tarefa'"></app-input>
+        <select name="state" id="state">
+            <option value="0">Todas as tarefas</option>
+            <option value="1">Em atraso</option>
+            <option value="2">Para concluir hoje</option>
+            <option value="3">Para concluir amanhã</option>
+        </select>
+        <app-button [classname]="'primary'" [text]="'Nova tarefa'"></app-button>
+    </section>
+    <section class="task-list">
+        <app-task [IsFocused]="false"></app-task>
+        <app-task [IsFocused]="false"></app-task>
+        <app-task [IsFocused]="false"></app-task>
+        <app-task [IsFocused]="false"></app-task>
+        <app-task [IsFocused]="false"></app-task>
+    </section>
+</app-dashboard-base-layout>
