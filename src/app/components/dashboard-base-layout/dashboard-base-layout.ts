@@ -1,3 +1,4 @@
+import { User } from '../../Models/User';
 import { DateStringValues } from '../../shared/DateStringValues';
 import { Component, Input } from '@angular/core';
 
@@ -16,7 +17,7 @@ export class DashboardBaseLayout {
   
   constructor(){
     this.date = new Date();
-    this.user = {id:1, email:"nelson@gmail.com", name:"Nelson Dos Santos"}
+    this.user = new User("nelson@gmail.com","Nelson Dos Santos",1)
     this.datestringValues = new DateStringValues();
   }
 
