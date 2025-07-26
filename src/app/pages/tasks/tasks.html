@@ -7,13 +7,37 @@
             <option value="2">Para concluir hoje</option>
             <option value="3">Para concluir amanhã</option>
         </select>
-        <app-button [classname]="'primary'" [text]="'Nova tarefa'"></app-button>
+        <app-button [classname]="'primary'" [text]="addTaskButtonText" (click)="expandNewTaskField()"></app-button>
+    </section>
+    <section class="add-task">
+        @if(newTaskFieldExpand){
+            <form action="#">
+                <div class="input-group">
+                    <small><label for="title">Título</label></small>
+                    <app-input [classname]="'white'" [placeholder]="'Ex: tarefa 1'" [id]="'title'"></app-input>
+                </div>
+                <div class="input-group">
+                    <small><label for="toFinishAt">Data de conclusão da tarefa</label></small>
+                    <app-input [classname]="'white'" [type]="'date'" [id]="'toFinishAt'"></app-input>
+                </div>
+                <div class="checkbox">
+                    <small><label for="isFocused">Destacar tarefa</label></small>
+                    <app-input [classname]="'white'" [type]="'checkbox'" [id]="'isFocused'"></app-input>
+                </div>
+                <div class="actions">
+                    <app-button [classname]="'primary-green'" [text]="'Salvar'"></app-button>
+                </div>
+            </form>
+        }
     </section>
     <section class="task-list">
-        <app-task [IsFocused]="false"></app-task>
-        <app-task [IsFocused]="false"></app-task>
-        <app-task [IsFocused]="false"></app-task>
-        <app-task [IsFocused]="false"></app-task>
-        <app-task [IsFocused]="false"></app-task>
+        @if(taskList.length > 0){
+            @for (taskItem of taskList; track $index) {
+                <app-task [taskModel]="taskItem"></app-task>
+            }
+        }
+        @else {
+            <small><p class="no-found-task">Nenhuma tarefa encontrada</p></small>
+        }
     </section>
 </app-dashboard-base-layout>

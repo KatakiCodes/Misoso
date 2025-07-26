@@ -21,4 +21,9 @@
             font-size: 24px;
         }
     }
+    p.no-task-found{
+        color: $gray-text;
+        margin-top: 20px;
+        text-align: center;
+    }
 }
