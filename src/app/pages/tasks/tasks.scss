@@ -1,5 +1,6 @@
 @import '../../../variables.scss';
 app-dashboard-base-layout{
+    margin-bottom: 10px;
     section.filter-section{
         display: flex;
         flex-wrap: wrap;
@@ -23,12 +24,12 @@ app-dashboard-base-layout{
         }
     }
     section.task-list{
+        border-radius: 10px;
         display: flex;
         gap: 10px;
         flex-direction: column;
         margin-top: 10px;
-        height: auto;
-        max-height: 70dvh;
+        max-height: 65dvh;
         overflow-y: auto;
     }
 }
