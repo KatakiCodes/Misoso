@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DashboardBaseLayout } from "../../components/dashboard-base-layout/dashboard-base-layout";
 import { Button } from "../../components/button/button";
 import { Input } from "../../components/input/input";
-import { Task } from "../../components/task/task";
+import { TaskModel } from "../../Models/TaskModel";
+import { TaskService } from '../../services/task.service';
+import { Task as Task } from "../../components/task/task";
 
 @Component({
   selector: 'app-tasks',
@@ -10,6 +12,23 @@ import { Task } from "../../components/task/task";
   templateUrl: './tasks.html',
   styleUrl: './tasks.scss'
 })
-export class Tasks {
+export class Tasks implements OnInit {
+  newTaskFieldExpand:boolean = false
+  addTaskButtonText = "Nova tarefa";
+  taskList:Array<TaskModel>;
+  constructor(private taskService:TaskService) {}
 
+  ngOnInit(): void {
+    this.taskList = this.getTasks();
+  }
+  private getTasks():Array<TaskModel>{
+    return this.taskService.getTasks();
+  }
+  getTaskByIndex(index:number):TaskModel{
+    return this.taskService.getTaskByIndex(index);
+  }
+  expandNewTaskField(){
+    this.newTaskFieldExpand = (this.newTaskFieldExpand)? false : true;
+    this.addTaskButtonText = (this.newTaskFieldExpand)? "Cancelar" : "Nova tarefa"
+  }
 }

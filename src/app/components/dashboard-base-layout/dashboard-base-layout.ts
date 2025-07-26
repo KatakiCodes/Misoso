@@ -1,4 +1,4 @@
-import { User } from '../../Models/User';
+import { UserModel } from '../../Models/UserModel';
 import { DateStringValues } from '../../shared/DateStringValues';
 import { Component, Input } from '@angular/core';
 
@@ -12,12 +12,12 @@ export class DashboardBaseLayout {
   protected weekday:string;
   protected date:Date;
   @Input() sectionPage:string;
-  protected user:User;
+  protected userModel:UserModel;
   private datestringValues:DateStringValues
   
   constructor(){
     this.date = new Date();
-    this.user = new User("nelson@gmail.com","Nelson Dos Santos",1)
+    this.userModel = new UserModel("nelson@gmail.com","Nelson Dos Santos",1)
     this.datestringValues = new DateStringValues();
   }
 

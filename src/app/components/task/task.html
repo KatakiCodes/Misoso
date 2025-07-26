@@ -1,4 +1,4 @@
-<app-card>
+<app-card [targetLink]="'/task-details'">
     <small><p class="primary">Tarefa em destaque</p></small>
     <div class="task-content">
         <div class="left">
@@ -7,7 +7,7 @@
         </div>
         <small><p class="primary">Concluir em: 2 dias</p></small>
     </div>
-    @if(IsFocused){
+    @if(taskModel.IsFocused){
         <hr>
         <app-subtask></app-subtask>
     }

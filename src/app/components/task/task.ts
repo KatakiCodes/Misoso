@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Card } from "../card/card";
 import { Subtask } from "../subtask/subtask";
-
+import { TaskModel } from '../../Models/TaskModel';
 @Component({
   selector: 'app-task',
   imports: [Card, Subtask],
@@ -9,5 +9,5 @@ import { Subtask } from "../subtask/subtask";
   styleUrl: './task.scss'
 })
 export class Task {
-  @Input() IsFocused:boolean;
+  @Input() taskModel:TaskModel;
 }

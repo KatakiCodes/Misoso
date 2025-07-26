@@ -3,23 +3,28 @@
         <div class="cards-top">
             <app-card [targetLink]="'/tasks'">
                 <p>Em atraso</p>
-                <p>1</p>
+                <p>{{ getLateTasks() }}</p>
             </app-card>
 
             <app-card [targetLink]="'/tasks'">
                 <p>Para hoje</p>
-                <p>4</p>
+                <p>{{ getToConcludeToday() }}</p>
             </app-card>
 
             <app-card [targetLink]="'/tasks'">
-                <p >Para amanhã</p>
-                <p>4</p>
+                <p>Para amanhã</p>
+                <p>{{ getToConcludeTomorrow() }}</p>
             </app-card>
         </div>
         <app-card [targetLink]="'/tasks'">
             <p>Todas as tarefas</p>
-            <p>12</p>
+            <p>{{ getTotalOfTask() }}</p>
         </app-card>
-        <app-task [IsFocused]="true"></app-task>
+        @if(focusedTask){
+            <app-task [taskModel]="focusedTask"></app-task>
+        }
+        @else {
+            <p class="no-task-found">Nenhuma tarefa em destaque</p>
+        }
     </div>
 </app-dashboard-base-layout>
