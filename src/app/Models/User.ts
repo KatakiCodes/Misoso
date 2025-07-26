@@ -1,5 +1,11 @@
-interface User{
-    id:number,
-    name:string,
-    email:string,
+export class User{
+    Id:number
+    Name:string
+    Email:string
+
+    constructor(name:string, email:string, id?:number){
+        this.Id = id ?? null,
+        this.Name = name,
+        this.Email = email
+    }
 }
