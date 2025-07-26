@@ -12,6 +12,11 @@ button{
         color: white;
         box-shadow: 0px 0px 6px $primary;
     }
+    &.primary-green{
+    background-color: $primary-green;
+    color: white;
+    box-shadow: 0px 0px 6px $primary-green;
+    }
     &.secondary{
         border: 1px solid $primary;
         color: $primary;
