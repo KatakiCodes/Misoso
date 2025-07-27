@@ -1,7 +1,7 @@
 <app-dashboard-base-layout [sectionPage]="'Tarefas'">
     <section class="filter-section">
-        <app-input [type]="'text'" [classname]="'white'" [placeholder]="'Buscar tarefa'"></app-input>
-        <select name="state" id="state">
+        <input type="text" class="white" name="seekTask" id="seekTask" placeholder="Buscar tarefa">
+        <select class="white" name="state" id="state">
             <option value="0">Todas as tarefas</option>
             <option value="1">Em atraso</option>
             <option value="2">Para concluir hoje</option>
@@ -11,18 +11,18 @@
     </section>
     <section class="add-task">
         @if(newTaskFieldExpand){
-            <form action="#">
+            <form [formGroup]="createTaskForm">
                 <div class="input-group">
                     <small><label for="title">Título</label></small>
-                    <app-input [classname]="'white'" [placeholder]="'Ex: tarefa 1'" [id]="'title'"></app-input>
+                    <input formControlName="title" class="white" type="text" name="title" id="title" placeholder="Ex: Tarefa 1">
                 </div>
                 <div class="input-group">
                     <small><label for="toFinishAt">Data de conclusão da tarefa</label></small>
-                    <app-input [classname]="'white'" [type]="'date'" [id]="'toFinishAt'"></app-input>
+                    <input formControlName="toFinishAt" class="white" type="date" name="toFinishAt" id="toFinishAt" placeholder="Data de conclusão da tarefa">
                 </div>
                 <div class="checkbox">
                     <small><label for="isFocused">Destacar tarefa</label></small>
-                    <app-input [classname]="'white'" [type]="'checkbox'" [id]="'isFocused'"></app-input>
+                    <input formControlName="isFocused" class="white" type="checkbox" name="isFocused" id="isFocused" placeholder="Destacar tarefa">
                 </div>
                 <div class="actions">
                     <app-button [classname]="'primary-green'" [text]="'Salvar'"></app-button>
