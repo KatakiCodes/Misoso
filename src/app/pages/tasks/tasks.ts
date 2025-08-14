@@ -5,10 +5,11 @@ import { TaskModel } from "../../Models/TaskModel";
 import { TaskService } from '../../services/task.service';
 import { Task as Task } from "../../components/task/task";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tasks',
-  imports: [DashboardBaseLayout, Button, Task, ReactiveFormsModule, FormsModule],
+  imports: [DashboardBaseLayout, Button, Task, ReactiveFormsModule, FormsModule, CommonModule],
   templateUrl: './tasks.html',
   styleUrl: './tasks.scss'
 })
@@ -18,11 +19,9 @@ export class Tasks implements OnInit {
   taskList:Array<TaskModel>;
 
   createTaskForm = new FormGroup({
-    title: new FormControl('',[Validators.required, Validators.minLength(3), Validators.maxLength(80)]),
-    userId: new FormControl(1, Validators.required),
-    createdAt: new FormControl(new Date(),[Validators.required]),
-    updatedAt: new FormControl(new Date(),[Validators.required]),
-    toFinishAt: new FormControl('',[Validators.required]),
+    title: new FormControl('',[Validators.required, Validators.minLength(3), Validators.maxLength(120)]),
+    description: new FormControl(''),
+    toFinishAt: new FormControl(),
     isFocused: new FormControl(false),
   })
 
@@ -31,7 +30,8 @@ export class Tasks implements OnInit {
   ngOnInit(): void {
     this.taskList = this.getTasks();
   }
-  private getTasks():Array<TaskModel>{
+  getTasks():Array<TaskModel>{
+    console.log(this.taskList);
     return this.taskService.getTasks();
   }
   getTaskByIndex(index:number):TaskModel{
@@ -40,5 +40,20 @@ export class Tasks implements OnInit {
   expandNewTaskField(){
     this.newTaskFieldExpand = (this.newTaskFieldExpand)? false : true;
     this.addTaskButtonText = (this.newTaskFieldExpand)? "Cancelar" : "Nova tarefa"
+  }
+  
+  createTask(){
+    let taskModel:TaskModel = new TaskModel();
+      taskModel.Id = undefined;
+      taskModel.UserId = undefined;
+      taskModel.Title = this.createTaskForm.value.title;
+      taskModel.Description = this.createTaskForm.value.description;
+      taskModel.CreatedAt = new Date();
+      taskModel.UpdatedAt = new Date();
+      taskModel.ToFinishAt = this.createTaskForm.value.toFinishAt ?? undefined;
+      taskModel.IsFocused = this.createTaskForm.value.isFocused ?? false;
+      taskModel.IsConcluded = false;
+    this.taskService.create(taskModel);
+    this.createTaskForm.reset();
   }
 }
