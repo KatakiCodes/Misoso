@@ -1,20 +1,24 @@
 @import '../../app.scss';
-app-dashboard-base-layout{
+
+app-dashboard-base-layout {
     margin-bottom: 10px;
-    section.filter-section{
+
+    section.filter-section {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
         align-items: center;
         justify-content: start;
 
-        app-input{
+        input {
             flex-grow: 1;
         }
-        app-button{
+
+        app-button {
             flex-grow: 0.5;
         }
-        select{
+
+        select {
             flex-grow: 0.5;
             padding: 12px;
             border: none;
@@ -23,7 +27,8 @@ app-dashboard-base-layout{
             outline-color: lightgray;
         }
     }
-    section.task-list{
+
+    section.task-list {
         border-radius: 10px;
         display: flex;
         gap: 10px;
@@ -32,27 +37,35 @@ app-dashboard-base-layout{
         max-height: 65dvh;
         overflow-y: auto;
 
-        .no-found-task{
+        .no-found-task {
             color: $gray-text;
             text-align: center;
             margin-top: 20px;
         }
     }
-    .add-task{
+
+    .add-task {
         margin-top: 10px;
-        form{
+
+        form {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            .input-group{
-                input,select{
+
+            .input-group {
+
+                input,
+                select {
                     width: 100%;
+                    margin-top: 8px;
                 }
-                label{
+
+                label {
                     color: $gray-text;
                 }
             }
-            .checkbox{
+
+            .checkbox {
                 display: flex;
                 align-items: center;
                 justify-content: start;
@@ -60,16 +73,27 @@ app-dashboard-base-layout{
                 gap: 8px;
             }
         }
-        .actions{
+
+        .actions {
             width: 80px;
             margin-top: 10px;
             gap: 8px;
             display: flex;
             align-items: center;
             justify-content: start;
-            app-button{
+
+            app-button {
                 width: 100%;
             }
+        }
+    }
+}
+
+@media (max-width:600px) {
+    section.filter-section {
+        flex-direction: column;
+        input,select,app-button,app-input  {
+            width: 100%;
         }
     }
 }

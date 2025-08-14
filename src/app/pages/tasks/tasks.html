@@ -15,17 +15,30 @@
                 <div class="input-group">
                     <small><label for="title">Título</label></small>
                     <input formControlName="title" class="white" type="text" name="title" id="title" placeholder="Ex: Tarefa 1">
+                    @if(createTaskForm.get('title').hasError('required') && createTaskForm.get('title').touched){
+                        <small><p class="error-notify-text">O título da tarefa deve ser informado!</p></small>
+                    }
+                    @else if(createTaskForm.get('title').hasError('minlength') && createTaskForm.get('title').touched){
+                        <small><p class="error-notify-text">O título da tarefa deve possuir no minimo 3 caractéres!</p></small>
+                    }
+                    @else if(createTaskForm.get('title').hasError('maxlength') && createTaskForm.get('title').touched){
+                        <small><p class="error-notify-text">O título da tarefa deve possuir no máximo 120 caractéres!</p></small>
+                    }
                 </div>
                 <div class="input-group">
                     <small><label for="toFinishAt">Data de conclusão da tarefa</label></small>
                     <input formControlName="toFinishAt" class="white" type="date" name="toFinishAt" id="toFinishAt" placeholder="Data de conclusão da tarefa">
+                </div>
+                <div class="input-group">
+                    <small><label for="description">Adicione uma descrição a tarefa</label></small>
+                    <textarea formControlName="description" class="white" name="description" id="description" placeholder="Descrição"></textarea>
                 </div>
                 <div class="checkbox">
                     <small><label for="isFocused">Destacar tarefa</label></small>
                     <input formControlName="isFocused" class="white" type="checkbox" name="isFocused" id="isFocused" placeholder="Destacar tarefa">
                 </div>
                 <div class="actions">
-                    <app-button [classname]="'primary-green'" [text]="'Salvar'"></app-button>
+                    <app-button [isDisabled]="createTaskForm.invalid" [classname]="'primary-green'" [text]="'Salvar'" (click)="createTask()"></app-button>
                 </div>
             </form>
         }
