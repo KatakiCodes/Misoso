@@ -7,6 +7,12 @@ button{
     background-color: transparent;
     width: 100%;
     border-radius: 4px;
+    &.primary:disabled,
+    &.primary-green:disabled{
+        background-color: lightgray;
+        cursor: default;
+        box-shadow: none;
+    }
     &.primary{
         background-color: $primary;
         color: white;

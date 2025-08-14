@@ -1,13 +1,17 @@
 <app-card [targetLink]="'/task-details'">
-    <small><p class="primary">Tarefa em destaque</p></small>
+    @if(taskModel.IsFocused){
+        <small><p class="primary">Tarefa em destaque</p></small>
+    }
     <div class="task-content">
         <div class="left">
-            <h3>Task name</h3>
-            <small><p>Criado em 2/7/2025</p></small>
+            <h3>{{ taskModel.Title }}</h3>
+            <small><p>Criado em: {{ taskModel.CreatedAt.toLocaleDateString() }}</p></small>
         </div>
-        <small><p class="primary">Concluir em: 2 dias</p></small>
+        @if(taskModel.ToFinishAt){
+            <small><p class="primary">Concluir em: {{ taskModel.ToFinishAt }}</p></small>
+        }
     </div>
-    @if(taskModel.IsFocused){
+    @if(showFocusedSubtask){
         <hr>
         <app-subtask></app-subtask>
     }
