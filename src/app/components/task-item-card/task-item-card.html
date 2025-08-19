@@ -1,0 +1,31 @@
+<a href="#" class="h-fit">
+    <div class="card bg-slate-800 border-1 border-gray-700 rounded p-2 mt-2 cursor-pointer hover:bg-slate-800 h-fit">
+        <div class="state text-center border-1 border-indigo-500 w-16 rounded-lg">
+            @if(task.IsFocused){
+            <p class="mx-auto my-auto text-xs text-indigo-500">Focused</p>
+            }
+        </div>
+        <div class="flex items-center gap-2 flex-basis-5 flex-wrap my-2">
+            <h2 class="text-xl font-bold">{{ task.Title }}</h2>
+            @if(task.IsLate){
+            <div class="state text-center border-1 border-red-500 min-w-10 rounded-lg">
+                <p class="mx-auto my-auto text-xs text-red-500">Late</p>
+            </div>
+            }
+        </div>
+        <small>
+            <p class="mt-2 w-4/5 text-gray-400">{{ task.Description }}</p>
+        </small>
+        <section class="subtasks mt-4 max-h-40 min-h-fit">
+            <div class="card bg-gray-800 border-1 border-gray-700 rounded pt-3 overflow-auto max-h-full overflow-x-hidden">
+                <div class="card-top divide-y divide-gray-600 space-y-3 overflow-hidden">
+                    @for (item of task.subtasks; track $index) {
+                        <div class="pb-3 px-3">
+                            <p class="text-xs text-gray-400"> {{ item.Title }} </p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+</a>
