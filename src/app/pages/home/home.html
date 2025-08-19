@@ -1,16 +1,5 @@
 <app-base-layout>
     <section class="container mx-auto text-gray-100 mt-4">
-        <div class="avatar-container flex gap-2">
-            <div class="avatar-icon">
-                <img src="./assets/avatar-icon.svg" alt="avatar icon" class="w-12 h-12">
-            </div>
-            <div class="avatar-info">
-                <h4>user@gmail.com</h4>
-                <small>
-                    <p>Username</p>
-                </small>
-            </div>
-        </div>
         <div class="dashboard-cards-section flex flex-basis-12 flex-wrap gap-2 my-4">
             <app-dashboard-card class="grow" [title]="'Today'" [value]="15" [url]="'#'"></app-dashboard-card>
             <app-dashboard-card class="grow" [title]="'Late'" [value]="5" [url]="'#'"></app-dashboard-card>
