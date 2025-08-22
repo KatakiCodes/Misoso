@@ -1,31 +1,74 @@
-<a href="#" class="h-fit">
-    <div class="card bg-slate-800 border-1 border-gray-700 rounded p-2 mt-2 cursor-pointer hover:bg-slate-800 h-fit">
-        <div class="state text-center border-1 border-indigo-500 w-16 rounded-lg">
-            @if(task.IsFocused){
-            <p class="mx-auto my-auto text-xs text-indigo-500">Focused</p>
-            }
-        </div>
-        <div class="flex items-center gap-2 flex-basis-5 flex-wrap my-2">
-            <h2 class="text-xl font-bold">{{ task.Title }}</h2>
-            @if(task.IsLate){
-            <div class="state text-center border-1 border-red-500 min-w-10 rounded-lg">
-                <p class="mx-auto my-auto text-xs text-red-500">Late</p>
-            </div>
-            }
-        </div>
-        <small>
-            <p class="mt-2 w-4/5 text-gray-400">{{ task.Description }}</p>
-        </small>
-        <section class="subtasks mt-4 max-h-40 min-h-fit">
-            <div class="card bg-gray-800 border-1 border-gray-700 rounded pt-3 overflow-auto max-h-full overflow-x-hidden">
-                <div class="card-top divide-y divide-gray-600 space-y-3 overflow-hidden">
-                    @for (item of task.subtasks; track $index) {
-                        <div class="pb-3 px-3">
-                            <p class="text-xs text-gray-400"> {{ item.Title }} </p>
-                        </div>
-                    }
-                </div>
-            </div>
-        </section>
+<div class="card bg-slate-800 border-1 border-gray-700 rounded p-2 mt-2 hover:bg-slate-800 h-fit">
+    @if(task.IsFocused){
+    <div class="state text-center border-1 border-indigo-500 w-16 rounded-lg">
+        <p class="mx-auto my-auto text-xs text-indigo-500">Focused</p>
     </div>
-</a>
+    }
+    <div class="flex items-center gap-2 flex-basis-5 flex-wrap my-2">
+        <div class="top">
+            <h2 class="text-xl text-gray-100 font-bold">{{ task.Title }}</h2>
+            <button class="px-3 py-2 text-xs bg-indigo-600 text-gray-100 rounded mt-2 cursor-pointer">+New
+                subtas</button>
+        </div>
+        @if(task.IsLate){
+        <div class="state text-center border-1 border-red-500 min-w-10 rounded-lg">
+            <p class="mx-auto my-auto text-xs text-red-500">Late</p>
+        </div>
+        }
+    </div>
+    <small>
+        <p class="mt-2 w-4/5 text-gray-400">{{ task.Description }}</p>
+    </small>
+    <section class="subtasks mt-4 max-h-40 min-h-fit">
+        @if(task.subtasks && task.subtasks.length > 0)
+        {
+        <div class="card bg-gray-800 border-1 border-gray-700 rounded pt-3 overflow-auto max-h-full overflow-x-hidden">
+            <div class="card-top divide-y divide-gray-600 space-y-3 overflow-hidden">
+                @for (item of task.subtasks; track $index) {
+                <div class="pb-3 px-3 flex items-center justify-between flex-wrap-reverse gap-2 flex-basis-12">
+                    <p class="text-xs text-gray-400 flex-1"> {{ item.Title }} </p>
+                    <div class="flex gap-2 ml-2 flex-wrap flex-basis-12">
+                        @if(showSubtaskActions)
+                        {
+                        @if(item.IsFocused){
+                        <div title="Get focus"
+                            class="p-1 flex items-center justify-center rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs">
+                            <img class="w-4 h-4 cursor-pointer" src="./assets/star.svg" alt="trash">
+                        </div>
+                        }@else
+                        {
+                        <div title="Get focus"
+                            class="p-1 flex items-center justify-center rounded-full bg-slate-700 hover:bg-slate-600 text-white text-xs">
+                            <img class="w-4 h-4 cursor-pointer" src="./assets/star.svg" alt="trash">
+                        </div>
+                        }
+
+                        @if(!item.IsConcluded){
+                        <button title="Conclude"
+                            class="p-1 flex items-center justify-center rounded-full bg-green-600 hover:bg-green-700 text-white text-xs">
+                            <img class="w-4 h-4 cursor-pointer" src="./assets/checked.svg" alt="trash">
+                        </button>
+                        }
+                        @else {
+                        <button title="Conclude"
+                            class="p-1 flex items-center justify-center rounded-full bg-slate-700 hover:bg-slate-600 text-white text-xs">
+                            <img class="w-4 h-4 cursor-pointer" src="./assets/checked.svg" alt="trash">
+                        </button> 
+                        }
+
+                        <button title="Delete"
+                            class="p-1 flex items-center justify-center rounded-full bg-red-600 hover:bg-red-700 text-white text-xs">
+                            <img class="w-4 h-4 cursor-pointer" src="./assets/trash.svg" alt="trash">
+                        </button>
+                        }
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+        }
+        @else {
+        <p class="text-xs w-full mt-2 text-center text-gray-400">No subtasks found</p>
+        }
+    </section>
+</div>
