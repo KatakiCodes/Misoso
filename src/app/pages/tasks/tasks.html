@@ -1,0 +1,74 @@
+<app-base-layout>
+    <section class="tasks mt-4 min-h-fit container mx-auto">
+        <h1 class="text-gray-100">All tasks</h1>
+        <div class="max-h-100 overflow-auto border-1 border-gray-700 rounded mt-4 text-gray-400">
+            <div class="actions flex flex-wrap-reverse flex-basis-12 justify-between gap-2 items-center border-b-1 border-gray-700 p-3">
+                <div class="filter flex flex-wrap flex-basis-12 justify-between gap-2 w-full md:w-max">
+                    <input type="text" name="search" id="search" placeholder="Search task..."
+                        class="p-2 bg-slate-800 border-1 border-gray-700 rounded text-sm text-gray-400 w-full md:w-auto"/>
+                    <select name="state" id="state"
+                        class="p-2 bg-slate-800 border-1 border-gray-700 rounded text-sm text-gray-400 w-full md:w-auto">
+                        <option value="0" disabled selected>Filter by state</option>
+                        <option value="1">In progress</option>
+                        <option value="2">Done</option>
+                        <option value="3">Late</option>
+                    </select>
+                </div>
+                <button class="p-2 bg-indigo-600 rounded cursor-pointer text-gray-100 text-sm w-full md:w-auto">+ New task</button>
+            </div>
+            <table class="w-full">
+                <thead class="text-sm bg-slate-800">
+                    <tr>
+                        <th class="p-3 text-left font-medium"><a href="#">Task</a></th>
+                        <th class="p-3 text-left font-medium">Created at</th>
+                        <th class="p-3 text-left font-medium">To finish at</th>
+                        <th class="p-3 text-left font-medium">Subtasks quantity</th>
+                        <th class="p-3 text-left font-medium"> State </th>
+                        <th class="p-3 text-left font-medium"></th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700 text-xs text-gray-100 w-full">
+                    <tr>
+                        <td class="p-3"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
+                                voluptatum?</a></td>
+                        <td class="p-3">11/10/2022</td>
+                        <td class="p-3">11/10/2023</td>
+                        <td class="p-3">200</td>
+                        <td class="p-3">
+                            <div class="state text-center border-1 border-yellow-600 w-fit px-2 rounded-lg">
+                                <p class="mx-auto my-auto text-xs text-yellow-600">in progress</p>
+                            </div>
+                        </td>
+                        <td class="p-3"><button class="p-1 bg-red-500 rounded cursor-pointer">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td class="p-3"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
+                                voluptatum?</a></td>
+                        <td class="p-3">11/10/2022</td>
+                        <td class="p-3">11/10/2023</td>
+                        <td class="p-3">200</td>
+                        <td class="p-3">
+                            <div class="state text-center border-1 border-red-500 w-fit px-2 rounded-lg">
+                                <p class="mx-auto my-auto text-xs text-red-500">Late</p>
+                            </div>
+                        </td>
+                        <td class="p-3"><button class="p-1 bg-red-500 rounded cursor-pointer">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td class="p-3"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
+                                voluptatum?</a></td>
+                        <td class="p-3">11/10/2022</td>
+                        <td class="p-3">11/10/2023</td>
+                        <td class="p-3">200</td>
+                        <td class="p-3">
+                            <div class="state text-center border-1 border-green-500 w-fit px-2 rounded-lg">
+                                <p class="mx-auto my-auto text-xs text-green-500">Done</p>
+                            </div>
+                        </td>
+                        <td class="p-3"><button class="p-1 bg-red-500 rounded cursor-pointer">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</app-base-layout>
