@@ -10,4 +10,5 @@ import { CommonModule } from '@angular/common';
 })
 export class TaskItemCard {
   @Input() task:TaskModel;
+  @Input() showSubtaskActions: boolean = false;
 }
