@@ -1,15 +1,27 @@
 <form action="#" class="my-2 w-full text-gray-100" method="post">
     <hr class="mb-2 border-gray-700">
-    <div class="flex flex-wrap flex-basis-12 gap-1">
+    <div class="flex flex-col gap-1">
         <input type="text" name="title" id="title"
             class="p-2 text-sm placeholder-gray-500 mb-1 text-gray-100 rounded border-1 border-gray-800 grow-1"
             placeholder="title" />
+        <textarea type="text" name="description" id="description"
+            class="p-2 text-sm placeholder-gray-500 mb-1 text-gray-100 rounded border-1 border-gray-800 grow-1"
+            placeholder="Description"></textarea>
+        @if(!editMode){
+        <label class="text-xs" for="toFinishAt">To finish at</label>
         <input type="date" name="toFinishAt" id="toFinishAt"
             class="p-2 text-sm mb-1 text-gray-100 rounded border-1 border-gray-800 grow-1">
+        }
     </div>
+    @if(!editMode){
     <div class="flex my-2 gap-1">
         <label for="isFocused" class="text-xs cursor-pointer">Is focused</label>
         <input type="checkbox" name="isFocused" id="isFocused">
     </div>
-    <button class="grow-1 cursor-pointer text-gray-100 w-full bg-indigo-600 text-sm p-2 rounded">Create</button>
+    }
+    <div class="actions flex gap-1">
+        <button class="grow-1 cursor-pointer text-gray-100 w-full bg-indigo-600 text-sm p-2 rounded">{{ (editMode)?
+            "Save" : "Create" }}</button>
+        <div class="grow-1 cursor-pointer text-gray-100 text-center w-full bg-red-500 text-sm p-2 rounded" (click)="closeForm()">Cancel</div>
+    </div>
 </form>
