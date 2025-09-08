@@ -1,3 +1,6 @@
+@if(subtaskForm){
+    <app-subtask-form (toogleFormEvent)="toggleSubtaskForm()"></app-subtask-form>
+}
 <div class="card bg-slate-800 border-1 border-gray-700 rounded p-2 mt-2 hover:bg-slate-800 h-fit">
     @if(task.IsFocused){
     <div class="state text-center border-1 border-indigo-500 w-16 rounded-lg">
@@ -7,8 +10,7 @@
     <div class="flex items-center gap-2 flex-basis-5 flex-wrap my-2">
         <div class="top">
             <h2 class="text-xl text-gray-100 font-bold">{{ task.Title }}</h2>
-            <button class="px-3 py-2 text-xs bg-indigo-600 text-gray-100 rounded mt-2 cursor-pointer">+New
-                subtask</button>
+            <button (click)="toggleSubtaskForm()" class="px-3 py-2 text-xs bg-indigo-600 text-gray-100 rounded mt-2 cursor-pointer">{{ (subtaskForm ? "Close":"Add subtask") }}</button>
         </div>
         @if(task.IsLate){
         <div class="state text-center border-1 border-red-500 min-w-10 rounded-lg">
