@@ -5,7 +5,7 @@
             <form action="#" method="post" class="w-full">
                 <div class="filter flex flex-wrap flex-basis-12 gap-1 w-full">
                     <input type="text" name="search" id="search" placeholder="Search task..."
-                        class="p-2 bg-slate-800 border-1 border-gray-700 rounded text-sm text-gray-400 grow-1"/>
+                        class="p-2 bg-slate-800 border-1 border-gray-700 rounded text-sm text-gray-400 grow-1" />
                     <select name="state" id="state"
                         class="p-2 bg-slate-800 border-1 border-gray-700 rounded text-sm text-gray-400 grow-1">
                         <option value="0" disabled selected>Filter by state</option>
@@ -17,14 +17,17 @@
             </form>
             <!-- Create/update task form -->
             @if(showTaskForm){
-            <app-task-form></app-task-form>
+            <app-task-form [editMode]="this.editMode" (closeFormEvent)="closeForm()" ></app-task-form>
             }
         </div>
         <div class="max-h-100 overflow-auto border-1 border-gray-700 rounded mt-2 text-gray-400">
             <div class="actions border-b-1 border-gray-700 p-3">
-                <button (click)="toggleCreateTaskButtonText()"
+                @if(!showTaskForm)
+                {
+                    <button (click)="showForm(false)"
                     class="p-2 bg-indigo-600 rounded cursor-pointer text-gray-100 text-sm w-full md:w-auto">{{
-                    createTaskButtonText }}</button>
+                    (this.editMode)?"Save":"Create" }}</button>
+                }
             </div>
             <table class="w-full">
                 <thead class="text-sm bg-slate-800">
@@ -49,7 +52,11 @@
                                 <p class="mx-auto my-auto text-xs text-yellow-600">in progress</p>
                             </div>
                         </td>
-                        <td class="p-3"><button class="p-1 bg-red-500 rounded cursor-pointer">Delete</button></td>
+                        <td class="p-3">
+                            <button class="py-1 px-3 bg-indigo-500 rounded cursor-pointer mr-2"
+                                (click)="showForm(true)">Edit</button>
+                            <button class="p-1 bg-red-500 rounded cursor-pointer">Delete</button>
+                        </td>
                     </tr>
                     <tr>
                         <td class="p-3"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
@@ -62,7 +69,10 @@
                                 <p class="mx-auto my-auto text-xs text-red-500">Late</p>
                             </div>
                         </td>
-                        <td class="p-3"><button class="p-1 bg-red-500 rounded cursor-pointer">Delete</button></td>
+                        <td class="p-3">
+                            <button class="py-1 px-3 bg-indigo-500 rounded cursor-pointer mr-2">Edit</button>
+                            <button class="p-1 bg-red-500 rounded cursor-pointer">Delete</button>
+                        </td>
                     </tr>
                     <tr>
                         <td class="p-3"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
@@ -75,7 +85,10 @@
                                 <p class="mx-auto my-auto text-xs text-green-500">Done</p>
                             </div>
                         </td>
-                        <td class="p-3"><button class="p-1 bg-red-500 rounded cursor-pointer">Delete</button></td>
+                        <td class="p-3">
+                            <button class="py-1 px-3 bg-indigo-500 rounded cursor-pointer mr-2">Edit</button>
+                            <button class="p-1 bg-red-500 rounded cursor-pointer">Delete</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

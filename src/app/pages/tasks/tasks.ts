@@ -10,12 +10,15 @@ import { TaskForm } from "../../components/task-form/task-form";
 })
 export class Tasks {
   showTaskForm:boolean = false;
-  createTaskButtonText:string = '+ New task';
+  editMode:boolean = false;
 
 
-  toggleCreateTaskButtonText(){
-    this.showTaskForm = (this.showTaskForm) ? false:true;
-    this.createTaskButtonText = (!this.showTaskForm) ?'+ New task':'Cancel';
-    console.log(this.createTaskButtonText);
+  showForm(editMode:boolean){
+    this.showTaskForm = true;
+    this.editMode = editMode;
+  }
+  closeForm(){
+    this.showTaskForm = false;
+    this.editMode = false;
   }
 }

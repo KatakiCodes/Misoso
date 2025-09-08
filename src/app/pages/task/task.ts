@@ -1,16 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BaseLayout } from '../../components/base-layout/base-layout';
 import { TaskItemCard } from "../../components/task-item-card/task-item-card";
 import { TaskModel } from '../../Models/TaskModel';
+import { TaskForm } from "../../components/task-form/task-form";
 
 @Component({
   selector: 'app-task',
-  imports: [BaseLayout, TaskItemCard],
+  imports: [BaseLayout, TaskItemCard, TaskForm],
   templateUrl: './task.html',
   styleUrl: './task.scss'
 })
 export class Task {
   task:TaskModel;
+  @Input() editMode:boolean = false;
   constructor() {
     this.task = new TaskModel();
     this.task.Id = 1;
