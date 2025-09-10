@@ -1,4 +1,4 @@
-export class SubtaskModel
+export interface subtaskInterface
 {
     Id:number;
     TaskId:number

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TaskModel } from '../../Models/TaskModel';
+import { taskInteface } from '../../interfaces/taskInterface';
 import { CommonModule } from '@angular/common';
 import { TaskForm } from "../task-form/task-form";
 import { SubtaskForm } from "../subtask-form/subtask-form";
@@ -11,13 +11,15 @@ import { SubtaskForm } from "../subtask-form/subtask-form";
   styleUrl: './task-item-card.scss'
 })
 export class TaskItemCard {
-  @Input() task:TaskModel;
-  @Input() showSubtaskActions: boolean;
-  subtaskForm: boolean;
+
+  @Input() showSubtaskActions:boolean;
+  @Input() task:taskInteface;
+  subtaskForm:boolean;
 
   constructor(){
     this.showSubtaskActions = false;
     this.subtaskForm = false;
+    console.info(this.task);
   }
 
   toggleSubtaskForm(){

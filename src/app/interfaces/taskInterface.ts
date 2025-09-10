@@ -1,6 +1,6 @@
-import { SubtaskModel } from "./SubtaskModel";
+import { subtaskInterface } from "./subtaskInterface";
 
-export class TaskModel
+export interface taskInteface
 {
     Id:number;
     UserId:number
@@ -13,5 +13,5 @@ export class TaskModel
     IsFocused:boolean;
     IsLate:boolean;
     IsConcluded:boolean;
-    subtasks:Array<SubtaskModel> = [] 
+    subtasks:Array<subtaskInterface>;
 }
