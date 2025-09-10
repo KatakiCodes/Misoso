@@ -23,7 +23,7 @@
         <p class="mt-2 w-4/5 text-gray-400">{{ task.Description }}</p>
     </small>
     <section class="subtasks mt-4 max-h-40 min-h-fit">
-        @if(task.subtasks && task.subtasks.length > 0)
+        @if((this.task) && (this.task.subtasks.length > 0))
         {
         <div class="card bg-gray-800 border-1 border-gray-700 rounded pt-3 overflow-auto max-h-full overflow-x-hidden">
             <div class="card-top divide-y divide-gray-600 space-y-3 overflow-hidden">

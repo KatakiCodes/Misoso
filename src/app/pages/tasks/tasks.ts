@@ -9,9 +9,15 @@ import { TaskForm } from "../../components/task-form/task-form";
   styleUrl: './tasks.scss'
 })
 export class Tasks {
-  showTaskForm:boolean = false;
-  editMode:boolean = false;
+  showTaskForm:boolean;
+  editMode:boolean;
+  taskList:Array<any>;
 
+  constructor(){
+    this.showTaskForm = false;
+    this.editMode = false;
+    this.taskList = [];
+  }
 
   showForm(editMode:boolean){
     this.showTaskForm = true;

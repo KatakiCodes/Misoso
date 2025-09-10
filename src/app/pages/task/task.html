@@ -1,6 +1,11 @@
 <app-base-layout>
     <div class="container mx-auto mt-4">
-        <app-task-item-card [showSubtaskActions]="true" [task]="task">
-        </app-task-item-card>
+        @if(this.task){
+            <app-task-item-card [showSubtaskActions]="true" [task]="task">
+            </app-task-item-card>
+        }
+        @else {
+            <p class="text-gray-400 text-center text-sm">Task not found!</p>
+        }
     </div>
 </app-base-layout>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BaseLayout } from '../../components/base-layout/base-layout';
 import { TaskItemCard } from "../../components/task-item-card/task-item-card";
-import { TaskModel } from '../../Models/TaskModel';
+import { taskInteface } from '../../interfaces/taskInterface';
 import { TaskForm } from "../../components/task-form/task-form";
 import { SubtaskForm } from "../../components/subtask-form/subtask-form";
 
@@ -12,19 +12,9 @@ import { SubtaskForm } from "../../components/subtask-form/subtask-form";
   styleUrl: './task.scss'
 })
 export class Task {
-  task:TaskModel;
+
+  task:taskInteface;
+  
   constructor() {
-    this.task = new TaskModel();
-    this.task.Id = 1;
-    this.task.Title = "My first task";
-    this.task.Description = "This is my first task description";
-    this.task.IsFocused = true;
-    this.task.IsLate = false;
-    this.task.IsConcluded = false;
-    this.task.subtasks = [
-      { Id: 1, TaskId:1,CreatedAt: new Date(), UpdatedAt: new Date() , Title: "Subtask 1", IsConcluded: true, IsFocused:false },
-      { Id: 2, TaskId:1,CreatedAt: new Date(), UpdatedAt: new Date() , Title: "Subtask 2", IsConcluded: true , IsFocused:false},
-      { Id: 3, TaskId:1,CreatedAt: new Date(), UpdatedAt: new Date() , Title: "Subtask 3", IsConcluded: false, IsFocused:true },
-    ];
   }
 }

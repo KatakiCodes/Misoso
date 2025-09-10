@@ -29,66 +29,41 @@
                 }
             </div>
             <table class="w-full">
-                <thead class="text-sm bg-slate-800">
-                    <tr>
-                        <th class="p-3 text-left font-medium"><a href="#">Task</a></th>
-                        <th class="p-3 text-left font-medium">Created at</th>
-                        <th class="p-3 text-left font-medium">To finish at</th>
-                        <th class="p-3 text-left font-medium">Subtasks quantity</th>
-                        <th class="p-3 text-left font-medium"> State </th>
-                        <th class="p-3 text-left font-medium"></th>
-                    </tr>
-                </thead>
+                @if(taskList.length > 0){
+                    <thead class="text-sm bg-slate-800">
+                        <tr>
+                            <th class="p-3 text-left font-medium"><a href="#">Task</a></th>
+                            <th class="p-3 text-left font-medium">Created at</th>
+                            <th class="p-3 text-left font-medium">To finish at</th>
+                            <th class="p-3 text-left font-medium">Subtasks quantity</th>
+                            <th class="p-3 text-left font-medium"> State </th>
+                            <th class="p-3 text-left font-medium"></th>
+                        </tr>
+                    </thead>
+                }
+                @else {
+                    <p class="text-gray-500 text-center">No task found</p>
+                }
                 <tbody class="divide-y divide-gray-700 text-xs text-gray-100 w-full">
-                    <tr>
-                        <td class="p-3"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-                                voluptatum?</a></td>
-                        <td class="p-3">11/10/2022</td>
-                        <td class="p-3">11/10/2023</td>
-                        <td class="p-3">200</td>
-                        <td class="p-3">
-                            <div class="state text-center border-1 border-yellow-600 w-fit px-2 rounded-lg">
-                                <p class="mx-auto my-auto text-xs text-yellow-600">in progress</p>
-                            </div>
-                        </td>
-                        <td class="p-3">
-                            <button class="py-1 px-3 bg-indigo-500 rounded cursor-pointer mr-2"
-                                (click)="showForm(true)">Edit</button>
-                            <button class="p-1 bg-red-500 rounded cursor-pointer">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="p-3"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-                                voluptatum?</a></td>
-                        <td class="p-3">11/10/2022</td>
-                        <td class="p-3">11/10/2023</td>
-                        <td class="p-3">200</td>
-                        <td class="p-3">
-                            <div class="state text-center border-1 border-red-500 w-fit px-2 rounded-lg">
-                                <p class="mx-auto my-auto text-xs text-red-500">Late</p>
-                            </div>
-                        </td>
-                        <td class="p-3">
-                            <button class="py-1 px-3 bg-indigo-500 rounded cursor-pointer mr-2">Edit</button>
-                            <button class="p-1 bg-red-500 rounded cursor-pointer">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="p-3"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-                                voluptatum?</a></td>
-                        <td class="p-3">11/10/2022</td>
-                        <td class="p-3">11/10/2023</td>
-                        <td class="p-3">200</td>
-                        <td class="p-3">
-                            <div class="state text-center border-1 border-green-500 w-fit px-2 rounded-lg">
-                                <p class="mx-auto my-auto text-xs text-green-500">Done</p>
-                            </div>
-                        </td>
-                        <td class="p-3">
-                            <button class="py-1 px-3 bg-indigo-500 rounded cursor-pointer mr-2">Edit</button>
-                            <button class="p-1 bg-red-500 rounded cursor-pointer">Delete</button>
-                        </td>
-                    </tr>
+                    @for(taskItem of taskList; track $index){
+                        <tr>
+                            <td class="p-3"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
+                                    voluptatum?</a></td>
+                            <td class="p-3">11/10/2022</td>
+                            <td class="p-3">11/10/2023</td>
+                            <td class="p-3">200</td>
+                            <td class="p-3">
+                                <div class="state text-center border-1 border-yellow-600 w-fit px-2 rounded-lg">
+                                    <p class="mx-auto my-auto text-xs text-yellow-600">in progress</p>
+                                </div>
+                            </td>
+                            <td class="p-3">
+                                <button class="py-1 px-3 bg-indigo-500 rounded cursor-pointer mr-2"
+                                    (click)="showForm(true)">Edit</button>
+                                <button class="p-1 bg-red-500 rounded cursor-pointer">Delete</button>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
