@@ -2,17 +2,17 @@
     <app-subtask-form (toogleFormEvent)="toggleSubtaskForm()"></app-subtask-form>
 }
 <div class="card bg-slate-800 border-1 border-gray-700 rounded p-2 mt-2 hover:bg-slate-800 h-fit">
-    @if(task.IsFocused){
+    @if(task.isFocused){
     <div class="state text-center border-1 border-indigo-500 w-16 rounded-lg">
         <p class="mx-auto my-auto text-xs text-indigo-500">Focused</p>
     </div>
     }
     <div class="flex items-center gap-2 flex-basis-5 flex-wrap my-2">
         <div class="top">
-            <h2 class="text-xl text-gray-100 font-bold">{{ task.Title }}</h2>
+            <h2 class="text-xl text-gray-100 font-bold">{{ task.title }}</h2>
             <button (click)="toggleSubtaskForm()" class="px-3 py-2 text-xs bg-indigo-600 text-gray-100 rounded mt-2 cursor-pointer">{{ (subtaskForm ? "Close":"Add subtask") }}</button>
         </div>
-        @if(task.IsLate){
+        @if(task.isLate){
         <div class="state text-center border-1 border-red-500 min-w-10 rounded-lg">
             <p class="mx-auto my-auto text-xs text-red-500">Late</p>
         </div>
@@ -20,7 +20,7 @@
     </div>
 
     <small>
-        <p class="mt-2 w-4/5 text-gray-400">{{ task.Description }}</p>
+        <p class="mt-2 w-4/5 text-gray-400">{{ task.description }}</p>
     </small>
     <section class="subtasks mt-4 max-h-40 min-h-fit">
         @if((this.task) && (this.task.subtasks.length > 0))
@@ -29,11 +29,11 @@
             <div class="card-top divide-y divide-gray-600 space-y-3 overflow-hidden">
                 @for (item of task.subtasks; track $index) {
                 <div class="pb-3 px-3 flex items-center justify-between flex-wrap-reverse gap-2 flex-basis-12">
-                    <p class="text-xs text-gray-400 flex-1"> {{ item.Title }} </p>
+                    <p class="text-xs text-gray-400 flex-1"> {{ item.title }} </p>
                     <div class="flex gap-2 ml-2 flex-wrap flex-basis-12">
                         @if(showSubtaskActions)
                         {
-                        @if(item.IsFocused){
+                        @if(item.isFocused){
                         <div title="Get focus"
                             class="p-1 flex items-center justify-center rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs">
                             <img class="w-4 h-4 cursor-pointer" src="./assets/star.svg" alt="trash">
@@ -46,7 +46,7 @@
                         </div>
                         }
 
-                        @if(!item.IsConcluded){
+                        @if(!item.isConcluded){
                         <button title="Conclude"
                             class="p-1 flex items-center justify-center rounded-full bg-green-600 hover:bg-green-700 text-white text-xs">
                             <img class="w-4 h-4 cursor-pointer" src="./assets/checked.svg" alt="trash">

@@ -1,10 +1,10 @@
 export interface subtaskInterface
 {
-    Id:number;
-    TaskId:number
-    Title:string;
-    CreatedAt:Date;
-    UpdatedAt:Date;
-    IsFocused:boolean;
-    IsConcluded:boolean;
+    id?:number;
+    taskId:number
+    title:string;
+    createdAt:Date;
+    updatedAt:Date;
+    isFocused:boolean;
+    isConcluded:boolean;
 }

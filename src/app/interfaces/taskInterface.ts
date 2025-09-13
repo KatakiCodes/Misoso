@@ -2,16 +2,16 @@ import { subtaskInterface } from "./subtaskInterface";
 
 export interface taskInteface
 {
-    Id:number;
-    UserId:number
-    Title:string;
-    Description:string;
-    CreatedAt:Date;
-    UpdatedAt:Date;
-    ToFinishAt:Date | undefined;
-    FinishedAt:Date;
-    IsFocused:boolean;
-    IsLate:boolean;
-    IsConcluded:boolean;
+    id?:number;
+    userId:number
+    title:string;
+    description:string;
+    createdAt:Date;
+    updatedAt:Date;
+    toFinishAt:Date | undefined;
+    finishedAt:Date;
+    isFocused:boolean;
+    isLate:boolean;
+    isConcluded:boolean;
     subtasks:Array<subtaskInterface>;
 }
