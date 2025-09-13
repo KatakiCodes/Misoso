@@ -1,6 +1,8 @@
 export interface userInterface
 {
-    Id:number
-    Name:string
-    Email:string
+    id?:number,
+    username:string,
+    email:string,
+    password:string,
+    external_id:string
 }
