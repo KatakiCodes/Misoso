@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { loginInterface } from '../../interfaces/loginInterface';
 
 @Component({
   selector: 'app-login',
@@ -13,18 +14,27 @@ import { CommonModule } from '@angular/common';
 export class Login {
 
   LoginForm:FormGroup;
-  LoginStatus:boolean | null;
 
   constructor(private AuthService:AuthService){
 
     this.LoginForm = new FormGroup({
-      Email: new FormControl(),
-      Password: new FormControl()
+      Email: new FormControl('',Validators.required),
+      Password: new FormControl('',Validators.required)
     });
-    this.LoginStatus = null;
-
   }
 
   Login(){
+    this.AuthService.auth((this.LoginForm.value as loginInterface)).subscribe(response=>{
+      if(!response.success === true)
+        this.LoginForm.setErrors({loginFailed:response.data})
+      else{
+        console.info(response.data);
+        this.clearLoginForm();
+      }
+    })
+  }
+
+  private clearLoginForm():void{
+    this.LoginForm.reset();
   }
 }

@@ -19,12 +19,12 @@
                 <input formControlName="Password" id="password" type="password" name="password" required autocomplete="current-password" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
                 </div>
             </div>
-            @if(this.LoginStatus != null){
-                <p class="text-red-400 text-sm text-center">Email or password incorrect!</p>
-            }
             <div>
                 <button (click)="Login()" class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 mb-4">Sign in</button>
             </div>
+            @if(this.LoginForm.hasError('loginFailed')){
+                <p class="text-sm text-red-400 text-center mb-1">{{ this.LoginForm.getError('loginFailed') }}</p>
+            }
         </form>
         <div class=" flex flex-col gap-2 md:flex-row">
             <button [routerLink]="'/register'" type="submit" class="w-full md:w-1/2 justify-center rounded-md bg-gray-800 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 mt-4">Sign up</button>
