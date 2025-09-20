@@ -36,7 +36,6 @@ export class Register implements OnInit {
           }
           else{
             this.RegisterForm.setErrors({passwordConfirmation:'the password confirmation does not match'});
-            console.error(this.RegisterForm.getError('passwordConfirmation'))
           }
         }
       })
