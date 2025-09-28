@@ -4,12 +4,15 @@ import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
 import { Tasks } from './pages/tasks/tasks';
 import { Task } from './pages/task/task';
+import { authGuard } from './guards/auth-guard';
 
 
 export const routes: Routes = [
-    { path:'', component: Home },
+    { path:'', pathMatch:'full', redirectTo:'home' },
+    { path:'home', component: Home, canActivate: [authGuard] },
     { path:'login', component: Login },
     { path:'register', component: Register },
-    { path:'tasks', component: Tasks },
-    { path:'task/:id', component: Task },
+    { path:'tasks', component: Tasks, canActivate: [authGuard] },
+    { path:'task/:id', component: Task, canActivate: [authGuard] },
+    { path:'**', redirectTo:'home' },
 ];

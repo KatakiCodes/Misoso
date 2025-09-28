@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../services/auth-service';
+import { authUserInterface } from '../../interfaces/authUserInterface';
 
 @Component({
   selector: 'app-header',
@@ -7,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './header.scss'
 })
 export class Header {
+  authService:AuthService = inject(AuthService);
+  authUser$ = this.authService.currentUserSig();
 
+  constructor(){
+    console.info(this.authUser$);
+  }
 }

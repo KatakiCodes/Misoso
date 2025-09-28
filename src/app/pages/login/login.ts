@@ -1,9 +1,10 @@
-import { Component, Inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject, Inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { loginInterface } from '../../interfaces/loginInterface';
+import { authUserInterface } from '../../interfaces/authUserInterface';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import { loginInterface } from '../../interfaces/loginInterface';
 export class Login {
 
   LoginForm:FormGroup;
-
+  router = inject(Router);
   constructor(private AuthService:AuthService){
 
     this.LoginForm = new FormGroup({
@@ -28,8 +29,11 @@ export class Login {
       if(!response.success === true)
         this.LoginForm.setErrors({loginFailed:response.data})
       else{
-        console.info(response.data);
+        let data = response.data as authUserInterface;
+        this.AuthService.currentUserSig.set(data);
+        localStorage.setItem('token', data.token ?? '');
         this.clearLoginForm();
+        this.goToHome();
       }
     })
   }
@@ -37,4 +41,8 @@ export class Login {
   private clearLoginForm():void{
     this.LoginForm.reset();
   }
+
+  private goToHome(){
+    this.router.navigate(['/home']);
+  }  
 }

@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user-service';
 import { userInterface } from '../../interfaces/userInterface';
+import { loginInterface } from '../../interfaces/loginInterface';
+import { AuthService } from '../../services/auth-service';
+import { authUserInterface } from '../../interfaces/authUserInterface';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +15,8 @@ import { userInterface } from '../../interfaces/userInterface';
 })
 export class Register implements OnInit {
   RegisterForm:FormGroup;
-
+  authService:AuthService = inject(AuthService);
+  router = inject(Router);
   constructor(private UserService:UserService){}
 
   ngOnInit(): void {
@@ -31,8 +35,10 @@ export class Register implements OnInit {
           this.RegisterForm.setErrors({ emailDuplicated : 'This email is registered'})
         else{
           if(this.checkConfirmationPassword()){
-            this.UserService.createUser(this.RegisterForm.value as userInterface).subscribe();
-            this.ClearRegisterForm();
+            this.UserService.createUser(this.RegisterForm.value as userInterface).subscribe(()=>{
+              this.login();
+              this.ClearRegisterForm();
+            });
           }
           else{
             this.RegisterForm.setErrors({passwordConfirmation:'the password confirmation does not match'});
@@ -41,7 +47,23 @@ export class Register implements OnInit {
       })
     }
   }
+  private login(){
 
+    let loginInterface:loginInterface = {
+      email: this.RegisterForm.get('email').value,
+      password: this.RegisterForm.get('password').value,
+    }
+
+    this.authService.auth(loginInterface).subscribe(response=>{
+      if(response.success === true){
+        let data = response.data as authUserInterface;
+        this.authService.currentUserSig.set(data);
+        localStorage.setItem('token', data.token ?? '');
+        this.router.navigate(['/home']);
+        this.ClearRegisterForm();
+    }
+  })
+}
   private checkConfirmationPassword():boolean{
     return this.RegisterForm.get('password').value === this.RegisterForm.get('conf_password').value;
   }
