@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth-service';
 import { authUserInterface } from '../../interfaces/authUserInterface';
 
@@ -8,11 +8,14 @@ import { authUserInterface } from '../../interfaces/authUserInterface';
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })
-export class Header {
+export class Header implements OnInit {
   authService:AuthService = inject(AuthService);
-  authUser$ = this.authService.currentUserSig();
+  authUser:{email:string,unique_name:string} | null = null;
 
   constructor(){
-    console.info(this.authUser$);
   }
+  ngOnInit(): void {
+    this.authUser = this.authService.getPayload();
+  }
+
 }

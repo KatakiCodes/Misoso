@@ -5,13 +5,12 @@ import { catchError, map, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { baseResponseInterface } from '../interfaces/baseResponseInterface';
 import { authUserInterface } from '../interfaces/authUserInterface';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-currentUserSig = signal<authUserInterface | undefined | null>(undefined);
 
   baseUrl:string;
   constructor(private http:HttpClient){
@@ -35,7 +34,16 @@ currentUserSig = signal<authUserInterface | undefined | null>(undefined);
   }
 
   logout(){
-    this.currentUserSig.set(null);
     localStorage.removeItem('token');
+  }
+
+  getPayload():{email:string,unique_name:string} | null{
+    let token:string = localStorage.getItem('token') || '';
+    if(token){
+      let payloads = jwtDecode<{email:string,unique_name:string}>(token);
+      return payloads;
+    }
+    else
+      return null;
   }
 }

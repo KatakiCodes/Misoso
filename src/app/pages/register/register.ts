@@ -57,7 +57,6 @@ export class Register implements OnInit {
     this.authService.auth(loginInterface).subscribe(response=>{
       if(response.success === true){
         let data = response.data as authUserInterface;
-        this.authService.currentUserSig.set(data);
         localStorage.setItem('token', data.token ?? '');
         this.router.navigate(['/home']);
         this.ClearRegisterForm();

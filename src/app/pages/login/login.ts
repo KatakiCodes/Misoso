@@ -30,7 +30,6 @@ export class Login {
         this.LoginForm.setErrors({loginFailed:response.data})
       else{
         let data = response.data as authUserInterface;
-        this.AuthService.currentUserSig.set(data);
         localStorage.setItem('token', data.token ?? '');
         this.clearLoginForm();
         this.goToHome();
