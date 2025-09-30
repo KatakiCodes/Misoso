@@ -13,8 +13,11 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
 
   baseUrl:string;
+  private tokenSig = signal<string>('');
+
   constructor(private http:HttpClient){
     this.baseUrl = environment.apiUrl+'auth';
+    this.tokenSig.set(localStorage.getItem('token') ?? ''); 
   }
 
   auth(login:loginInterface):Observable<baseResponseInterface<authUserInterface | string>>{
@@ -35,15 +38,19 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem('token');
+    this.tokenSig.set('');
   }
 
   getPayload():{email:string,unique_name:string} | null{
-    let token:string = localStorage.getItem('token') || '';
-    if(token){
-      let payloads = jwtDecode<{email:string,unique_name:string}>(token);
+    if(this.tokenSig()){
+      let payloads = jwtDecode<{email:string,unique_name:string,exp:number}>(this.tokenSig());
       return payloads;
     }
     else
       return null;
+  }
+  isTokenExpired():boolean{
+    let payloads = jwtDecode<{exp:number}>(this.tokenSig());
+    return (payloads.exp * 1000) < Date.now();
   }
 }
